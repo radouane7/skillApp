@@ -1,0 +1,24 @@
+import React, { useState, useEffect } from 'react';
+import './styles/globals.css';
+import Header from './components/Header';
+import Navigation from './components/Navigation';
+import Dashboard from './pages/Dashboard';
+import Discover from './pages/Discover';
+
+function App() {
+  const [currentView, setCurrentView] = useState('dashboard');
+  const [currentUser, setCurrentUser] = useState(null);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+      <div className="max-w-md mx-auto bg-white min-h-screen shadow-2xl">
+        <Header currentUser={currentUser} />
+        {currentView === 'dashboard' && <Dashboard currentUser={currentUser} />}
+        {currentView === 'discover' && <Discover />}
+        <Navigation currentView={currentView} setCurrentView={setCurrentView} />
+      </div>
+    </div>
+  );
+}
+
+export default App;
